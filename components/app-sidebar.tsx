@@ -1,4 +1,4 @@
-import { Receipt , Home, PackageSearch , History } from "lucide-react"
+import { Receipt, Home, PackageSearch, History, Settings } from "lucide-react";
 
 import {
   Sidebar,
@@ -9,7 +9,7 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-} from "@/components/ui/sidebar"
+} from "@/components/ui/sidebar";
 
 // Menu items.
 const items = [
@@ -21,7 +21,7 @@ const items = [
   {
     title: "Receipt",
     url: "/Receipt",
-    icon: Receipt ,
+    icon: Receipt,
   },
   {
     title: "Product",
@@ -33,7 +33,12 @@ const items = [
     url: "/History",
     icon: History,
   },
-]
+  {
+    title: "Settings",
+    url: "/Settings",
+    icon: Settings,
+  },
+];
 
 export function AppSidebar() {
   return (
@@ -58,5 +63,5 @@ export function AppSidebar() {
         </SidebarGroup>
       </SidebarContent>
     </Sidebar>
-  )
+  );
 }
