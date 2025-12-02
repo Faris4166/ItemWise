@@ -45,9 +45,7 @@ export default function ProductCard() {
           />
         </CardHeader>
         <CardHeader>
-          <CardTitle>
-            ชื่อสินค้า
-          </CardTitle>
+          <CardTitle>ชื่อสินค้า</CardTitle>
           <CardDescription>
             <h1>จำนวนคงเหลือ 5 ชิ้น</h1>
           </CardDescription>

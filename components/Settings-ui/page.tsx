@@ -11,6 +11,15 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import Bank from "./ui/bank";
+import PromptPay from "./ui/PromptPay";
 
 export default function Settings_ui() {
   return (
@@ -53,7 +62,7 @@ export default function Settings_ui() {
                 <Label htmlFor="phone">เบอร์โทรศัพท์</Label>
                 <Input
                   id="phone"
-                  type="tel"
+                  type="number"
                   placeholder="08X-XXX-XXXX"
                   required
                 />
@@ -77,13 +86,13 @@ export default function Settings_ui() {
               />
             </div>
             <div className="grid gap-2">
-              <Label htmlFor="address">ที่อยู่</Label>
-              <Textarea
-                placeholder="Type your message here."
-                id="address"
-                required
-                className="resize-none"
-              />
+              <Label htmlFor="bank">Bank</Label>
+              <Bank />
+              <Label htmlFor="number_Bank">number Bank</Label>
+              <Input type="number" id="number_Bank" placeholder="number Bank" />{" "}
+            </div>
+            <div className="grid gap-2">
+              <PromptPay />
             </div>
           </form>
         </CardContent>

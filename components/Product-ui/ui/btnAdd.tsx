@@ -1,5 +1,6 @@
 import React from "react";
 import { Button } from "@/components/ui/button";
+import { Upload } from "lucide-react";
 import {
   Dialog,
   DialogClose,
@@ -19,6 +20,14 @@ import {
   InputGroupText,
   InputGroupTextarea,
 } from "@/components/ui/input-group";
+import {
+  Empty,
+  EmptyContent,
+  EmptyDescription,
+  EmptyHeader,
+  EmptyMedia,
+  EmptyTitle,
+} from "@/components/ui/empty";
 
 export default function BtnAdd() {
   return (
@@ -59,8 +68,26 @@ export default function BtnAdd() {
                 />
               </div>
               <div className="grid gap-3">
-                <Label htmlFor="picture">Picture</Label>
-                <Input id="picture" type="file" />
+                <Empty className="border border-dashed">
+                  <EmptyHeader>
+                    <EmptyMedia variant="icon">
+                      <Upload />
+                    </EmptyMedia>
+                    <EmptyTitle>Cloud Storage Empty</EmptyTitle>
+                    <EmptyDescription>
+                      Upload files to your cloud storage to access them
+                      anywhere.
+                    </EmptyDescription>
+                  </EmptyHeader>
+                  <EmptyContent>
+                    <Input
+                      id="picture"
+                      type="file"
+                      name="picture"
+                      accept=".jpg, .jpeg, .png, .svg"
+                    />
+                  </EmptyContent>
+                </Empty>
               </div>
             </div>
             <DialogFooter>
