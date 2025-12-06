@@ -1,6 +1,6 @@
 import React from "react";
+import { Ellipsis, Upload } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Upload } from "lucide-react";
 import {
   Dialog,
   DialogClose,
@@ -16,6 +16,7 @@ import { Label } from "@/components/ui/label";
 import {
   InputGroup,
   InputGroupAddon,
+  InputGroupButton,
   InputGroupInput,
   InputGroupText,
   InputGroupTextarea,
@@ -28,12 +29,32 @@ import {
   EmptyMedia,
   EmptyTitle,
 } from "@/components/ui/empty";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
 
-export default function BtnAdd() {
+export default function Btn_edit() {
   return (
-    <div>
-      <Dialog>
-        <form>
+    <Dialog>
+      <form>
+        <DialogTrigger asChild>
+          <Button variant="outline">
+            <Ellipsis />
+          </Button>
+        </DialogTrigger>
+        <DialogContent className="sm:max-w-[425px]">
+          <DialogHeader>
+            <DialogTitle>Edit Product</DialogTitle>
+            <DialogDescription>สามารถแก้ไขหรือลบได้</DialogDescription>
+          </DialogHeader>{" "}
           <DialogTrigger asChild>
             <Button variant="outline">Add Product</Button>
           </DialogTrigger>
@@ -85,6 +106,29 @@ export default function BtnAdd() {
                   </EmptyContent>
                 </Empty>
               </div>
+              <div className="grid w-full max-w-sm items-center gap-3">
+                <AlertDialog>
+                  <AlertDialogTrigger asChild>
+                    <Button variant="outline">Delete</Button>
+                  </AlertDialogTrigger>
+                  <AlertDialogContent>
+                    <AlertDialogHeader>
+                      <AlertDialogTitle>
+                        Are you absolutely sure?
+                      </AlertDialogTitle>
+                      <AlertDialogDescription>
+                        This action cannot be undone. This will permanently
+                        delete your account and remove your data from our
+                        servers.
+                      </AlertDialogDescription>
+                    </AlertDialogHeader>
+                    <AlertDialogFooter>
+                      <AlertDialogCancel>Cancel</AlertDialogCancel>
+                      <AlertDialogAction>Continue</AlertDialogAction>
+                    </AlertDialogFooter>
+                  </AlertDialogContent>
+                </AlertDialog>
+              </div>
             </div>
             <DialogFooter>
               <DialogClose asChild>
@@ -93,8 +137,14 @@ export default function BtnAdd() {
               <Button type="submit">Save changes</Button>
             </DialogFooter>
           </DialogContent>
-        </form>
-      </Dialog>
-    </div>
+          <DialogFooter>
+            <DialogClose asChild>
+              <Button variant="outline">Cancel</Button>
+            </DialogClose>
+            <Button type="submit">Save changes</Button>
+          </DialogFooter>
+        </DialogContent>
+      </form>
+    </Dialog>
   );
 }

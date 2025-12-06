@@ -11,18 +11,19 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import Bank from "./ui/bank";
-import PromptPay from "./ui/PromptPay";
+import PromptPay from "@/components/Settings-ui/ui/PromptPay";
+import Bank from "@/components/Settings-ui/ui/bank";
 
-export default function Settings_ui() {
+
+
+export default function From_me() {
   return (
     <div className="mt-2.5 w-full  mx-auto">
       <Card className="w-full">
         <CardHeader>
-          <CardTitle>ข้อมูลส่วนตัวและการติดต่อ</CardTitle>
+          <CardTitle>ข้อมูลส่วนตัวของเจ้าของร้าน</CardTitle>
           <CardDescription>
-            กรุณาป้อนข้อมูลชื่อ-นามสกุล เบอร์โทรศัพท์
-            และที่อยู่เพื่ออัปเดตบัญชีของคุณ
+            ตรวจสอบข้อมูลและสามารถแก้ในหน้านี้ได้หรือไปหน้า Settings
           </CardDescription>
         </CardHeader>
         <CardContent>

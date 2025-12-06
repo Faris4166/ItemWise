@@ -1,0 +1,20 @@
+[
+  {
+    "Name": "กาแฟ ดริป",
+    "Images": "../public/demo-1.jpg",
+    "Price": 120.50,
+    "หน่วยเงิน": "บาท"
+  },
+  {
+    "Name": "แก้วเก็บอุณหภูมิ",
+    "Images": "../public/demo-2.jpg",
+    "Price": 450,
+    "Quantity": 15
+  },
+  {
+    "Name": "เมล็ดกาแฟ อาราบิก้า",
+    "Images": "../public/demo-3.jpg",
+    "Price": 350.75,
+    "Quantity": 100
+  }
+]

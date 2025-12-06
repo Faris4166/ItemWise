@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react'
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -11,18 +11,15 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import Bank from "./ui/bank";
-import PromptPay from "./ui/PromptPay";
 
-export default function Settings_ui() {
+export default function From_customer() {
   return (
     <div className="mt-2.5 w-full  mx-auto">
       <Card className="w-full">
         <CardHeader>
-          <CardTitle>ข้อมูลส่วนตัวและการติดต่อ</CardTitle>
+          <CardTitle>ข้อมูลลูกค้า</CardTitle>
           <CardDescription>
-            กรุณาป้อนข้อมูลชื่อ-นามสกุล เบอร์โทรศัพท์
-            และที่อยู่เพื่ออัปเดตบัญชีของคุณ
+            ใส่ข้อมูลของลูกค้าและตรวจสอบ
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -70,36 +67,6 @@ export default function Settings_ui() {
                 />
               </div>
             </div>
-            <div className="grid gap-2">
-              <div className="grid gap-2">
-                <Label htmlFor="Shop_name">ชื่อร้าน</Label>
-                <Input
-                  id="Shop_name"
-                  type="name"
-                  placeholder="ร้านไก่ทอดหาดใหญ่"
-                  required
-                />
-              </div>
-              <Label htmlFor="address">ที่อยู่</Label>
-              <Textarea
-                placeholder="Type your message here."
-                id="address"
-                required
-              />
-            </div>
-            <div className="grid gap-2">
-              <Label htmlFor="bank">Bank</Label>
-              <Bank />
-              <Label htmlFor="number_Bank">number Bank</Label>
-              <Input
-                type="number"
-                id="number_Bank"
-                placeholder="number Bank"
-              />{" "}
-            </div>
-            <div className="grid gap-2">
-              <PromptPay />
-            </div>
           </form>
         </CardContent>
         <CardFooter className="flex-col gap-2">
@@ -109,5 +76,5 @@ export default function Settings_ui() {
         </CardFooter>
       </Card>
     </div>
-  );
+  )
 }

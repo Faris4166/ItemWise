@@ -1,3 +1,4 @@
+import Receipt_page from "@/components/Receipt-ui/page";
 import React from "react";
 
 export default function page() {
@@ -5,12 +6,7 @@ export default function page() {
     <div className="px-2 grid grid-cols-1 grid-rows-1 gap-2">
       <h1 className="font-serif text-2xl">Receipt</h1>
       <hr />
-      <p>
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt ducimus
-        ipsa harum? Minima reiciendis, voluptatem esse perspiciatis minus,
-        impedit distinctio eos neque similique eum tenetur, sunt tempore
-        corporis quaerat. Necessitatibus.
-      </p>
+      <Receipt_page />
     </div>
   );
 }
