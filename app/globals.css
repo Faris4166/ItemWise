@@ -120,3 +120,27 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* เพิ่มในไฟล์ CSS หลักของคุณ (เช่น globals.css) */
+@media print {
+  /* ซ่อน input fields, textareas และ checkbox ในโหมดพิมพ์ */
+  input, 
+  textarea, 
+  [type="checkbox"],
+  /* ถ้ามี CardFooter ที่มีปุ่มหรือส่วนที่ไม่ต้องการพิมพ์ */
+  .CardFooter {
+    display: none !important;
+  }
+  
+  /* ตัวอย่าง: หากต้องการลบเงาหรือขอบที่ไม่จำเป็นออกเมื่อพิมพ์ */
+  .shadow, .border, .ring {
+    box-shadow: none !important;
+    border: none !important;
+    ring: none !important;
+  }
+
+  /* ปรับปรุงการแสดงผลของ Card ให้ดูเหมือนเอกสาร */
+  .card {
+      border: none !important;
+  }
+}

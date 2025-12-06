@@ -19,7 +19,7 @@ export default function From_customer() {
         <CardHeader>
           <CardTitle>ข้อมูลลูกค้า</CardTitle>
           <CardDescription>
-            ใส่ข้อมูลของลูกค้าและตรวจสอบ
+            ตรวจสอบข้อมูลและสามารถแก้ในหน้านี้ได้หรือไปหน้า Settings
           </CardDescription>
         </CardHeader>
         <CardContent>

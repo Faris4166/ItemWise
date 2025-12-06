@@ -1,10 +1,9 @@
 import React from 'react'
-import InvoiceForm from '../invoice/page'
 
 export default function page() {
   return (
     <div>
-      <InvoiceForm />
+      
     </div>
   )
 }

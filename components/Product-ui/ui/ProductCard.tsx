@@ -25,18 +25,17 @@ export default function ProductCard() {
             height={250}
             alt=""
             className=""
-            id=""
           />
         </div>
         <CardHeader>
-          <CardTitle id="name">Name</CardTitle>
-          <CardDescription id="quantity">จำนวนเหลือ 50 ชิ้น</CardDescription>
+          <CardTitle>Card Title</CardTitle>
+          <CardDescription>Card Description</CardDescription>
           <CardAction>
             <Btn_edit />
           </CardAction>
         </CardHeader>
         <CardContent>
-          <p id="price"> 20 ฿</p>
+          <p>Card Content</p>
         </CardContent>
       </Card>
     </div>
