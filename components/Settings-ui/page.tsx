@@ -1,4 +1,6 @@
-import React from "react";
+"use client";
+
+import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -15,8 +17,70 @@ import Bank from "./ui/bank";
 import PromptPay from "./ui/PromptPay";
 
 export default function Settings_ui() {
+  // สร้าง State สำหรับเก็บข้อมูลจาก Form ทั้งหมด
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    phone: "",
+    email: "",
+    shopName: "",
+    address: "",
+    bankNumber: "",
+  });
+
+  // ดึงข้อมูลเดิมจาก Backend เมื่อโหลดหน้าเว็บ
+  useEffect(() => {
+    const fetchSettings = async () => {
+      try {
+        const response = await fetch("/api/settings");
+        if (response.ok) {
+          const data = await response.json();
+          // อัปเดต State ด้วยข้อมูลที่ดึงมา (ถ้ามี)
+          setFormData((prev) => ({ ...prev, ...data }));
+        }
+      } catch (error) {
+        console.error("Failed to fetch settings:", error);
+      }
+    };
+    fetchSettings();
+  }, []);
+
+  // ฟังก์ชันสำหรับจัดการการเปลี่ยนแปลงใน Input
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { id, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [id]: value,
+    }));
+  };
+
+  // ฟังก์ชันสำหรับส่งข้อมูลไปบันทึกที่ Backend
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    try {
+      const response = await fetch("/api/settings", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        alert("บันทึกข้อมูลสำเร็จ!");
+      } else {
+        alert("เกิดข้อผิดพลาดในการบันทึกข้อมูล");
+      }
+    } catch (error) {
+      console.error("Error saving settings:", error);
+      alert("ไม่สามารถเชื่อมต่อกับเซิร์ฟเวอร์ได้");
+    }
+  };
+
   return (
-    <div className="mt-2.5 w-full  mx-auto">
+    <div className="mt-2.5 w-full mx-auto">
       <Card className="w-full">
         <CardHeader>
           <CardTitle>ข้อมูลส่วนตัวและการติดต่อ</CardTitle>
@@ -26,8 +90,8 @@ export default function Settings_ui() {
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <form className="grid gap-4">
-            {/* ส่วนที่ 1: ชื่อ และ นามสกุล (2 คอลัมน์บนหน้าจอขนาดกลางขึ้นไป) */}
+          <form id="settings-form" onSubmit={handleSubmit} className="grid gap-4">
+            {/* ส่วนที่ 1: ชื่อ และ นามสกุล */}
             <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
               <div className="grid gap-2">
                 <Label htmlFor="firstName">ชื่อ</Label>
@@ -35,6 +99,8 @@ export default function Settings_ui() {
                   id="firstName"
                   type="text"
                   placeholder="ชื่อจริงของคุณ"
+                  value={formData.firstName}
+                  onChange={handleChange}
                   required
                 />
               </div>
@@ -44,19 +110,23 @@ export default function Settings_ui() {
                   id="lastName"
                   type="text"
                   placeholder="นามสกุลของคุณ"
+                  value={formData.lastName}
+                  onChange={handleChange}
                   required
                 />
               </div>
             </div>
 
-            {/* ส่วนที่ 2: เบอร์โทรศัพท์ และ อีเมล (2 คอลัมน์) */}
+            {/* ส่วนที่ 2: เบอร์โทรศัพท์ และ อีเมล */}
             <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
               <div className="grid gap-2">
                 <Label htmlFor="phone">เบอร์โทรศัพท์</Label>
                 <Input
                   id="phone"
-                  type="number"
+                  type="text" // เปลี่ยนเป็น text เพื่อรองรับเลข 0 นำหน้า
                   placeholder="08X-XXX-XXXX"
+                  value={formData.phone}
+                  onChange={handleChange}
                   required
                 />
               </div>
@@ -66,44 +136,55 @@ export default function Settings_ui() {
                   id="email"
                   type="email"
                   placeholder="m@example.com"
+                  value={formData.email}
+                  onChange={handleChange}
                   required
                 />
               </div>
             </div>
+
             <div className="grid gap-2">
               <div className="grid gap-2">
-                <Label htmlFor="Shop_name">ชื่อร้าน</Label>
+                <Label htmlFor="shopName">ชื่อร้าน</Label>
                 <Input
-                  id="Shop_name"
-                  type="name"
+                  id="shopName"
+                  type="text"
                   placeholder="ร้านไก่ทอดหาดใหญ่"
+                  value={formData.shopName}
+                  onChange={handleChange}
                   required
                 />
               </div>
               <Label htmlFor="address">ที่อยู่</Label>
               <Textarea
-                placeholder="Type your message here."
                 id="address"
+                placeholder="ป้อนที่อยู่ของคุณที่นี่"
+                value={formData.address}
+                onChange={handleChange}
                 required
               />
             </div>
+
             <div className="grid gap-2">
-              <Label htmlFor="bank">Bank</Label>
+              <Label htmlFor="bank">ธนาคาร</Label>
               <Bank />
-              <Label htmlFor="number_Bank">number Bank</Label>
+              <Label htmlFor="bankNumber">เลขบัญชีธนาคาร</Label>
               <Input
-                type="number"
-                id="number_Bank"
-                placeholder="number Bank"
-              />{" "}
+                id="bankNumber"
+                type="text"
+                placeholder="เลขบัญชีธนาคาร"
+                value={formData.bankNumber}
+                onChange={handleChange}
+              />
             </div>
+
             <div className="grid gap-2">
               <PromptPay />
             </div>
           </form>
         </CardContent>
         <CardFooter className="flex-col gap-2">
-          <Button type="submit" className="w-full">
+          <Button type="submit" form="settings-form" className="w-full">
             บันทึกข้อมูล
           </Button>
         </CardFooter>
