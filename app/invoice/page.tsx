@@ -7,6 +7,13 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Plus, Trash2 } from "lucide-react";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
 import { calculateSubtotal, formatBaht } from "@/lib/utils";
 
 export default function InvoiceForm() {
@@ -139,21 +146,44 @@ export default function InvoiceForm() {
         {/* ---------------- PromptPay ---------------- */}
         <section className="border-t pt-4">
           <h3 className="font-semibold mb-3">PromptPay</h3>
-          <div className="flex gap-4 flex-wrap">
-            <select
-              className="border rounded px-2 py-1"
+
+          <div className="flex gap-4 flex-wrap items-center">
+            <Select
               value={promptPay.type}
-              onChange={(e) => setPromptPay({ ...promptPay, type: e.target.value as "phone" | "citizen" })}
+              onValueChange={(value) =>
+                setPromptPay({
+                  ...promptPay,
+                  type: value as "phone" | "citizen",
+                })
+              }
             >
-              <option value="phone">เบอร์โทรศัพท์</option>
-              <option value="citizen">เลขบัตรประชาชน</option>
-            </select>
+              <SelectTrigger className="w-48">
+                <SelectValue placeholder="เลือกประเภท" />
+              </SelectTrigger>
+
+              <SelectContent>
+                <SelectItem value="phone">เบอร์โทรศัพท์</SelectItem>
+                <SelectItem value="citizen">เลขบัตรประชาชน</SelectItem>
+              </SelectContent>
+            </Select>
+
             <Input
-              placeholder="เบอร์โทร / เลขบัตร"
-              onChange={(e) => setPromptPay({ ...promptPay, id: e.target.value })}
+              className="w-64"
+              placeholder={
+                promptPay.type === "phone"
+                  ? "กรอกเบอร์โทรศัพท์"
+                  : "กรอกเลขบัตรประชาชน"
+              }
+              value={promptPay.id}
+              onChange={(e) =>
+                setPromptPay({ ...promptPay, id: e.target.value })
+              }
             />
           </div>
         </section>
+
+        
+
 
         {/* ---------------- ปุ่ม ---------------- */}
         <div className="flex justify-end gap-4 pt-6">
